@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS schedulings(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     tId INT NOT NULL,
     cId INT NOT NULL,
-    dates DATE NOT NULL DEFAULT CURRENT_DATE,
+    dates DATE NOT NULL,
     status ENUM ('reserved', 'canceled', 'open','payment','closed') NOT NULL DEFAULT 'reserved',
     FOREIGN KEY (tId) REFERENCES tables(id),
     FOREIGN KEY (cId) REFERENCES clients(id)
@@ -33,5 +33,5 @@ CREATE TABLE IF NOT EXISTS productsche(
     quantity INT NOT NULL,
     FOREIGN KEY (pId) REFERENCES products(id),
     FOREIGN KEY (eId) REFERENCES schedulings(id),
-    PRIMARY KEY (pId, sId)
+    PRIMARY KEY (pId, eId)
 );
