@@ -1,0 +1,23 @@
+services:
+    db:
+      image: mysql:5.7
+      container_name: test-mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: test
+        MYSQL_USER: adm
+        MYSQL_PASSWORD: test123
+      ports:
+        - "3306:3306"
+      volumes:
+        - test:/var/lib/mysql
+      networks:
+        - app-networks
+volumes:
+    test:
+
+networks:
+    app-networks:
+        driver: bridge
+  
