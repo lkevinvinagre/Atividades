@@ -22,6 +22,6 @@ INSERT INTO schedulings (tId, cId, dates, status) VALUES
     (3, 1, '2025-03-01', 'reserved');
 -- Population of Product schedules
 INSERT INTO productsche (pId, eId, quantity) VALUES
-    (1, 3, 1),
+    (1, 1, 1),
     (1, 2, 2),
     (2, 1, 1);

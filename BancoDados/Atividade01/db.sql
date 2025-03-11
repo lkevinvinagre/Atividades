@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS products(
     price DOUBLE NOT NULL
 );
 -- Schedulings
-CREATE TABLE IF NOT EXISTS schedulings(
+CREATE TABLE IF NOT EXISTS orders(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     tId INT NOT NULL,
     cId INT NOT NULL,
@@ -27,11 +27,11 @@ CREATE TABLE IF NOT EXISTS schedulings(
     FOREIGN KEY (cId) REFERENCES clients(id)
 );
 -- Product schedules
-CREATE TABLE IF NOT EXISTS productsche(
+CREATE TABLE IF NOT EXISTS product_orders(
     pId INT NOT NULL,
-    eId INT NOT NULL,
+    oId INT NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (pId) REFERENCES products(id),
-    FOREIGN KEY (eId) REFERENCES schedulings(id),
+    FOREIGN KEY (oId) REFERENCES orders(id),
     PRIMARY KEY (pId, eId)
 );
