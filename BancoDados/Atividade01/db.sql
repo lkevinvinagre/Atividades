@@ -28,10 +28,10 @@ CREATE TABLE IF NOT EXISTS schedulings(
 );
 -- Product schedules
 CREATE TABLE IF NOT EXISTS productsche(
-    id LONG NOT NULL PRIMARY KEY AUTO_INCREMENT,
     pId LONG NOT NULL,
-    sId LONG NOT NULL,
+    eId LONG NOT NULL,
     quantity INT NOT NULL,
     FOREIGN KEY (pId) REFERENCES products(id),
-    FOREIGN KEY (sId) REFERENCES schedulings(id)
+    FOREIGN KEY (eId) REFERENCES schedulings(id),
+    PRIMARY KEY (pId, sId)
 );
