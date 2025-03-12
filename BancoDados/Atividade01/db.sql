@@ -33,5 +33,5 @@ CREATE TABLE IF NOT EXISTS product_orders(
     quantity INT NOT NULL,
     FOREIGN KEY (pId) REFERENCES products(id),
     FOREIGN KEY (oId) REFERENCES orders(id),
-    PRIMARY KEY (pId, eId)
+    PRIMARY KEY (pId, oId)
 );
