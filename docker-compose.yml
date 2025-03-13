@@ -1,23 +1,56 @@
 services:
-    db:
+
+  mysqldb:
       image: mysql:5.7
-      container_name: test-mysql
+      container_name: mysql-db
       restart: always
       environment:
         MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: test
+        MYSQL_DATABASE: teste
         MYSQL_USER: adm
         MYSQL_PASSWORD: test123
       ports:
         - "3306:3306"
       volumes:
-        - test:/var/lib/mysql
+        - mysqlv:/var/lib/mysql
       networks:
         - app-networks
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_DATABASE=teste
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    networks: 
+      - app-networks
+    ports:
+      - '4402:4402'
+    volumes: 
+      - mongov:/data/db
+  
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    depends_on:
+      - mongodb
+    networks: 
+      - app-networks
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo-dev
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=admin123
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+    ports:
+      - '8081:8081'
+    volumes: 
+      - mongov:/data/db      
+
 volumes:
-    test:
+  mongov:
+  mysqlv:
 
 networks:
-    app-networks:
-        driver: bridge
-  
+  app-networks:
+    driver: bridge
