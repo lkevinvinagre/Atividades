@@ -1,6 +1,11 @@
 {
-  "createCollection": "db.createCollection('commands')",
-  "insertOne": "db.commands.insertOne({command: 'ls', description: 'List files and directories'})",
+  "createCollection": "mongodb.createCollection('commands')",
+  "insertOne": "mongodb.commands.insertOne(
+      {
+        command: 'ls', 
+        description: 'List files and directories'
+      }
+      )",
   "insertMany": "db.commands.insertMany([{command: 'pwd', description: 'Print working directory'}, {command: 'cd', description: 'Change directory'}])",
   "find": "db.posts.find({ title: 'Post Title 1'})",
   "updateOne": "db.posts.updateOne({ title: 'Post Title 1' }, { $set: { likes: 2 } })",
